@@ -20,13 +20,13 @@ int main(){
         printf("CANNOT OPEN THE FILE");
         exit(1);
     }
-
+    int size;
+    fscanf(fp1,"%d",&size);
+    
     int i=0;
     while (fscanf(fp1, "%s %d %d", &name[i], &year[i], &price[i]) != EOF) { //in.txt 파일의 내용을 name , price , year 배열에 넣기 
         i++;
     }
-
-    int size = 6;
 
     Max(price, size);
     Min(price , size);
