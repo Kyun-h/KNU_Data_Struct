@@ -1,4 +1,7 @@
 //2024004060 황상균
+/*
+실수한 점 : 3차원 할당하는 과정에서 index 잘못 설정 & free 과정에서 또한 index 실수 -> 개념 똑바로 짚고 넘어가기
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
