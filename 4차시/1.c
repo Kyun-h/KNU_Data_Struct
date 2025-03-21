@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct polynomial{ //구조체 POLY 선
+typedef struct polynomial{ //구조체 POLY 선언 
     int coef, expon;
 }POLY;
 
