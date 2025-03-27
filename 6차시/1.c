@@ -19,16 +19,69 @@ void MoveSet(offsets move[8]);
 void push(element item);
 element pop();
 void stackFull();
+void path(FILE *f);
 
 element stack[MAX_STACK_SIZE];
 
 int main(void){
-    FILE *f;
-    if((f=fopen("maze2.txt","r"))==NULL){
+    FILE *f1,*f2,*f3;
+    if((f1=fopen("maze1.txt","r"))==NULL){
         fprintf(stderr,"File Cannot Open");
         exit(EXIT_FAILURE);
     }
 
+    if((f2=fopen("maze2.txt","r"))==NULL){
+        fprintf(stderr,"File Cannot Open");
+        exit(EXIT_FAILURE);
+    }
+
+    if((f3=fopen("maze3.txt","r"))==NULL){
+        fprintf(stderr,"File Cannot Open");
+        exit(EXIT_FAILURE);
+    }
+
+    path(f1);
+    path(f2);
+    path(f3);
+
+    fclose(f1);
+    fclose(f2);
+    fclose(f3);
+    return 0;
+}
+
+void MoveSet(offsets move[8]){ //offset 설정하는 함수 
+    move[0].vert = -1; move[0].horiz = 0; //북 
+    move[1].vert = -1 , move[1].horiz = 1; //북동 
+    move[2].vert = 0 , move[2].horiz = 1; //동 
+    move[3].vert = 1 , move[3].horiz = 1; //남동 
+    move[4].vert = 1 , move[4].horiz = 0; //남 
+    move[5].vert = 1 , move[5].horiz = -1; //남서 
+    move[6].vert = 0, move[6].horiz = -1; //서 
+    move[7].vert = -1 , move[7].horiz = -1; //북서 
+}
+
+void push(element item){
+    if(top>=MAX_STACK_SIZE-1)
+        stackFull();
+    stack[++top] = item;
+}
+
+element pop(){
+    if(top==-1) {
+        fprintf(stderr, "Stack is Empty");
+        exit(EXIT_FAILURE);
+    };
+    return stack[top--];
+}
+
+void stackFull(){
+    fprintf(stderr,"Stack is Full.");
+    exit(EXIT_FAILURE);
+}
+
+void path(FILE *f){
+    
     int row , col, dir=0;
     int initial_row , initial_col;
     int next_row , next_col;
@@ -120,9 +173,6 @@ int main(void){
         }
     } 
     int k=0;
-    // for(int i=0; i<=top;i++){
-    //     printf("%d \n",stack[i].cnt);
-    // }
 
     if(found){
         printf("[PATH]\n");
@@ -146,45 +196,14 @@ int main(void){
             puts("");
         }
     }
-    else printf("The maze doen not have a path.\n");
+    else printf("No Path.\n");
 
     for(int i=0; i<row; i++){ //행 할당해제  
         free(maze[i]);
         free(mark[i]);
     }
+    puts("");
 
     free(maze); //할당 해제 
     free(mark); //할당 해제 
-    fclose(f);
-    return 0;
-}
-
-void MoveSet(offsets move[8]){ //offset 설정하는 함수 
-    move[0].vert = -1; move[0].horiz = 0; //북 
-    move[1].vert = -1 , move[1].horiz = 1; //북동 
-    move[2].vert = 0 , move[2].horiz = 1; //동 
-    move[3].vert = 1 , move[3].horiz = 1; //남동 
-    move[4].vert = 1 , move[4].horiz = 0; //남 
-    move[5].vert = 1 , move[5].horiz = -1; //남서 
-    move[6].vert = 0, move[6].horiz = -1; //서 
-    move[7].vert = -1 , move[7].horiz = -1; //북서 
-}
-
-void push(element item){
-    if(top>=MAX_STACK_SIZE-1)
-        stackFull();
-    stack[++top] = item;
-}
-
-element pop(){
-    if(top==-1) {
-        fprintf(stderr, "Stack is Empty");
-        exit(EXIT_FAILURE);
-    };
-    return stack[top--];
-}
-
-void stackFull(){
-    fprintf(stderr,"Stack is Full.");
-    exit(EXIT_FAILURE);
 }
