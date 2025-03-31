@@ -1,3 +1,4 @@
+//2024004060 황상균
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_STACK_SIZE 100
@@ -15,11 +16,11 @@ typedef struct{
     short int horiz;
 } offsets;
 
-void MoveSet(offsets move[8]);
-void push(element item);
-element pop();
-void stackFull();
-void path(FILE *f);
+void MoveSet(offsets move[8]); //move 8방향 설정해주는 함수 
+void push(element item); //stack push 함수 
+element pop(); //stack pop 함수 
+void stackFull(); //stack이 Full한 상태일 때 사용 
+void path(FILE *f); //path 구하는 함수 
 
 element stack[MAX_STACK_SIZE];
 
@@ -61,13 +62,13 @@ void MoveSet(offsets move[8]){ //offset 설정하는 함수
     move[7].vert = -1 , move[7].horiz = -1; //북서 
 }
 
-void push(element item){
+void push(element item){ //stack에 push 함수 
     if(top>=MAX_STACK_SIZE-1)
         stackFull();
     stack[++top] = item;
 }
 
-element pop(){
+element pop(){ //stack에서 pop하는 함수 
     if(top==-1) {
         fprintf(stderr, "Stack is Empty");
         exit(EXIT_FAILURE);
@@ -75,12 +76,12 @@ element pop(){
     return stack[top--];
 }
 
-void stackFull(){
+void stackFull(){ //stack이 Full한 상태일 때 오류 출력 
     fprintf(stderr,"Stack is Full.");
     exit(EXIT_FAILURE);
 }
 
-void path(FILE *f){
+void path(FILE *f){ //path 구하는 함수 
     
     int row , col, dir=0;
     int initial_row , initial_col;
@@ -138,8 +139,8 @@ void path(FILE *f){
 
     for(int i=1; i<initial_row+1; i++){
         for(int j=1; j<initial_col+1;j++){
-            if(i==start.row && j == start.col) printf("S ");
-            else if(i==end.row && j == end.col) printf("F ");
+            if(i==start.row && j == start.col) printf("S "); //시작지점 출력 
+            else if(i==end.row && j == end.col) printf("F "); //끝지점 출력 
             else printf("%d ",maze[i][j]);
         }
         puts("");
@@ -157,10 +158,10 @@ void path(FILE *f){
         col = position.col;
         dir = position.dir;
         
-        while (dir<8 && !found) {
+        while (dir<8 && !found) { //dir이 0~7이고 found 못 했을 때 
             next_row = row + move[dir].vert; 
             next_col = col + move[dir].horiz;
-            if (next_row==EXIT_ROW && next_col==EXIT_COL) found = 1;
+            if (next_row==EXIT_ROW && next_col==EXIT_COL) found = 1; 
             
             else if(!maze[next_row][next_col] && !mark[next_row][next_col]) {
                 mark[next_row][next_col] = 1;
@@ -183,7 +184,7 @@ void path(FILE *f){
                 else {
                     int is_path = 0;
                     for(k=0; k<=top; k++){
-                        if(i == stack[k].row && j == stack[k].col){
+                        if(i == stack[k].row && j == stack[k].col){ //stack에 저장된 지점일 경우 is_path 증가 
                             is_path++;
                             break;
                         }
