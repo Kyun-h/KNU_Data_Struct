@@ -1,4 +1,4 @@
-//2024004060 È²»ó±Õ
+//2024004060 í™©ìƒê· 
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_STACK_SIZE 100
@@ -16,11 +16,11 @@ typedef struct{
     short int horiz;
 } offsets;
 
-void MoveSet(offsets move[8]); //move 8¹æÇâ ¼³Á¤ÇØÁÖ´Â ÇÔ¼ö 
-void push(element item); //stack push ÇÔ¼ö 
-element pop(); //stack pop ÇÔ¼ö 
-void stackFull(); //stackÀÌ FullÇÑ »óÅÂÀÏ ¶§ »ç¿ë 
-void path(FILE *f); //path ±¸ÇÏ´Â ÇÔ¼ö 
+void MoveSet(offsets move[8]); //move 8ë°©í–¥ ì„¤ì •í•´ì£¼ëŠ” í•¨ìˆ˜ 
+void push(element item); //stack push í•¨ìˆ˜ 
+element pop(); //stack pop í•¨ìˆ˜ 
+void stackFull(); //stackì´ Fullí•œ ìƒíƒœì¼ ë•Œ ì‚¬ìš© 
+void path(FILE *f); //path êµ¬í•˜ëŠ” í•¨ìˆ˜ 
 
 element stack[MAX_STACK_SIZE];
 
@@ -51,24 +51,24 @@ int main(void){
     return 0;
 }
 
-void MoveSet(offsets move[8]){ //offset ¼³Á¤ÇÏ´Â ÇÔ¼ö 
-    move[0].vert = -1; move[0].horiz = 0; //ºÏ 
-    move[1].vert = -1 , move[1].horiz = 1; //ºÏµ¿ 
-    move[2].vert = 0 , move[2].horiz = 1; //µ¿ 
-    move[3].vert = 1 , move[3].horiz = 1; //³²µ¿ 
-    move[4].vert = 1 , move[4].horiz = 0; //³² 
-    move[5].vert = 1 , move[5].horiz = -1; //³²¼­ 
-    move[6].vert = 0, move[6].horiz = -1; //¼­ 
-    move[7].vert = -1 , move[7].horiz = -1; //ºÏ¼­ 
+void MoveSet(offsets move[8]){ //offset ì„¤ì •í•˜ëŠ” í•¨ìˆ˜ 
+    move[0].vert = -1; move[0].horiz = 0; //ë¶ 
+    move[1].vert = -1 , move[1].horiz = 1; //ë¶ë™ 
+    move[2].vert = 0 , move[2].horiz = 1; //ë™ 
+    move[3].vert = 1 , move[3].horiz = 1; //ë‚¨ë™ 
+    move[4].vert = 1 , move[4].horiz = 0; //ë‚¨ 
+    move[5].vert = 1 , move[5].horiz = -1; //ë‚¨ì„œ 
+    move[6].vert = 0, move[6].horiz = -1; //ì„œ 
+    move[7].vert = -1 , move[7].horiz = -1; //ë¶ì„œ 
 }
 
-void push(element item){ //stack¿¡ push ÇÔ¼ö 
+void push(element item){ //stackì— push í•¨ìˆ˜ 
     if(top>=MAX_STACK_SIZE-1)
         stackFull();
     stack[++top] = item;
 }
 
-element pop(){ //stack¿¡¼­ popÇÏ´Â ÇÔ¼ö 
+element pop(){ //stackì—ì„œ popí•˜ëŠ” í•¨ìˆ˜ 
     if(top==-1) {
         fprintf(stderr, "Stack is Empty");
         exit(EXIT_FAILURE);
@@ -76,12 +76,12 @@ element pop(){ //stack¿¡¼­ popÇÏ´Â ÇÔ¼ö
     return stack[top--];
 }
 
-void stackFull(){ //stackÀÌ FullÇÑ »óÅÂÀÏ ¶§ ¿À·ù Ãâ·Â 
+void stackFull(){ //stackì´ Fullí•œ ìƒíƒœì¼ ë•Œ ì˜¤ë¥˜ ì¶œë ¥ 
     fprintf(stderr,"Stack is Full.");
     exit(EXIT_FAILURE);
 }
 
-void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö 
+void path(FILE *f){ //path êµ¬í•˜ëŠ” í•¨ìˆ˜ 
     
     int row , col, dir=0;
     int initial_row , initial_col;
@@ -90,12 +90,12 @@ void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö
 
     element position;
     offsets move[8];
-    MoveSet(move); //offset ¼³Á¤ 
+    MoveSet(move); //offset ì„¤ì • 
 
     int **maze , **mark;
     int EXIT_ROW, EXIT_COL;
     
-    //row col ÀÔ·Â¹Ş±â 
+    //row col ì…ë ¥ë°›ê¸° 
     fscanf(f,"%d", &row);
     initial_row = row;
     fscanf(f,"%d", &col);
@@ -103,24 +103,24 @@ void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö
     maze = (int**)malloc((row+2)*sizeof(int*));
     mark = (int**)malloc((row+2)*sizeof(int*));
     
-    for(int i=0; i<row+2; i++){ //2Â÷¿ø µ¿ÀûÇÒ´ç 
+    for(int i=0; i<row+2; i++){ //2ì°¨ì› ë™ì í• ë‹¹ 
         maze[i] = (int *)malloc((col+2)*sizeof(int));
         mark[i] = (int *)malloc((col+2)*sizeof(int));
     }
 
-    for(int i=0; i<row+2; i++){ //mark ÃÊ±âÈ­ 
+    for(int i=0; i<row+2; i++){ //mark ì´ˆê¸°í™” 
         for(int j=0; j<col+2; j++){
             mark[i][j] = 0;
         }
     }
 
-    for(int i=0; i<row+2; i++){ //¹Ì·Î ÃÊ±âÈ­ (boundary¸¦ À§ÇØ 1·Î ÃÊ±âÈ­)
+    for(int i=0; i<row+2; i++){ //ë¯¸ë¡œ ì´ˆê¸°í™” (boundaryë¥¼ ìœ„í•´ 1ë¡œ ì´ˆê¸°í™”)
         for(int j=0; j<col+2; j++){
             maze[i][j] = 1;
         }
     }
 
-    for(int i=1; i<row+1; i++){ //¹Ì·Î ¼¼ÆÃ 
+    for(int i=1; i<row+1; i++){ //ë¯¸ë¡œ ì„¸íŒ… 
         for(int j=1; j<col+1; j++){
             fscanf(f,"%d",&maze[i][j]);
         }
@@ -128,7 +128,7 @@ void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö
     
     element start , end;
     
-    //½ÃÀÛ ÁöÁ¡°ú ³¡ ÁöÁ¡ ¹Ş±â 
+    //ì‹œì‘ ì§€ì ê³¼ ë ì§€ì  ë°›ê¸° 
     fscanf(f,"%d", &start.row);
     fscanf(f,"%d", &start.col);
     fscanf(f,"%d", &end.row);
@@ -139,8 +139,8 @@ void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö
 
     for(int i=1; i<initial_row+1; i++){
         for(int j=1; j<initial_col+1;j++){
-            if(i==start.row && j == start.col) printf("S "); //½ÃÀÛÁöÁ¡ Ãâ·Â 
-            else if(i==end.row && j == end.col) printf("F "); //³¡ÁöÁ¡ Ãâ·Â 
+            if(i==start.row && j == start.col) printf("S "); //ì‹œì‘ì§€ì  ì¶œë ¥ 
+            else if(i==end.row && j == end.col) printf("F "); //ëì§€ì  ì¶œë ¥ 
             else printf("%d ",maze[i][j]);
         }
         puts("");
@@ -153,12 +153,12 @@ void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö
     stack[0].row = start.row; stack[0].col = start.col; stack[0].dir = 0; top = 0;
     
     while (top>-1 && !found) {
-        position = pop(); //stack¿¡ ÀúÀåµÈ ÇöÀç À§Ä¡ ¹Ş¾Æ¼­ position¿¡ ³Ö±â 
+        position = pop(); //stackì— ì €ì¥ëœ í˜„ì¬ ìœ„ì¹˜ ë°›ì•„ì„œ positionì— ë„£ê¸° 
         row = position.row;      
         col = position.col;
         dir = position.dir;
         
-        while (dir<8 && !found) { //dirÀÌ 0~7ÀÌ°í found ¸ø ÇßÀ» ¶§ 
+        while (dir<8 && !found) { //dirì´ 0~7ì´ê³  found ëª» í–ˆì„ ë•Œ 
             next_row = row + move[dir].vert; 
             next_col = col + move[dir].horiz;
             if (next_row==EXIT_ROW && next_col==EXIT_COL) found = 1; 
@@ -179,12 +179,12 @@ void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö
         printf("[PATH]\n");
         for(int i=1; i<initial_row+1; i++){
             for(int j=1; j<initial_col+1;j++){
-                if(i==start.row && j == start.col)printf("S "); //½ÃÀÛÁ¡ Ãâ·Â 
-                else if(i==end.row && j == end.col) printf("F "); //³¡Á¡ Ãâ·Â 
+                if(i==start.row && j == start.col)printf("S "); //ì‹œì‘ì  ì¶œë ¥ 
+                else if(i==end.row && j == end.col) printf("F "); //ëì  ì¶œë ¥ 
                 else {
                     int is_path = 0;
                     for(k=0; k<=top; k++){
-                        if(i == stack[k].row && j == stack[k].col){ //stack¿¡ ÀúÀåµÈ ÁöÁ¡ÀÏ °æ¿ì is_path Áõ°¡ 
+                        if(i == stack[k].row && j == stack[k].col){ //stackì— ì €ì¥ëœ ì§€ì ì¼ ê²½ìš° is_path ì¦ê°€ 
                             is_path++;
                             break;
                         }
@@ -199,12 +199,12 @@ void path(FILE *f){ //path ±¸ÇÏ´Â ÇÔ¼ö
     }
     else printf("No Path.\n");
 
-    for(int i=0; i<row; i++){ //Çà ÇÒ´çÇØÁ¦  
+    for(int i=0; i<row; i++){ //í–‰ í• ë‹¹í•´ì œ  
         free(maze[i]);
         free(mark[i]);
     }
     puts("");
 
-    free(maze); //ÇÒ´ç ÇØÁ¦ 
-    free(mark); //ÇÒ´ç ÇØÁ¦ 
+    free(maze); //í• ë‹¹ í•´ì œ 
+    free(mark); //í• ë‹¹ í•´ì œ 
 }
