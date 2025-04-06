@@ -1,4 +1,6 @@
 //2024004060 황상균
+//Time check 
+
 #include <stdio.h>
 #include <time.h>
 #define MAX_SIZE 1001

@@ -1,4 +1,5 @@
 //2024004060 황상균
+//Polynomial DataStruct
 
 #include <stdio.h>
 #include <stdlib.h>

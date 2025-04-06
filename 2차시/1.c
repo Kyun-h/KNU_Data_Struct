@@ -1,4 +1,5 @@
 //2024004060 황상균 
+//입력받은 문자 홀수항 & reverse 출력 
 #include <stdio.h>
 #include <ctype.h>
 #pragma warning (disable:4996)
