@@ -1,9 +1,9 @@
-//2024004060 È²»ó±Õ
+//2024004060 í™©ìƒê· 
 #include <stdio.h>
 #include <time.h>
 #define MAX_SIZE 1001
 #define SWAP(x,y,t) ((t)=(x), (x)=(y), (y)=(t))
-void sort(int [], int); //Á¤·Ä ÇÔ¼ö
+void sort(int [], int); //ì •ë ¬ í•¨ìˆ˜
 void main(void){
     int i,n,step=10;
     int a[MAX_SIZE];
@@ -11,19 +11,19 @@ void main(void){
     clock_t start;
 
     printf("    n   time\n");
-    for(n=0;n<=1000;n+= step){ //nÀ» step¸¸Å­ ´õÇÔ
+    for(n=0;n<=1000;n+= step){ //nì„ stepë§Œí¼ ë”í•¨
         for(i=0;i<n;i++)
             a[i] = n-i;
 
         start = clock();
         sort(a,n);
-        duration = ((double)(clock()-start))/CLOCKS_PER_SEC; //sort°¡ ½ÇÇàµÈ ½Ã°£ duration¿¡ ÀúÀå 
+        duration = ((double)(clock()-start))/CLOCKS_PER_SEC; //sortê°€ ì‹¤í–‰ëœ ì‹œê°„ durationì— ì €ì¥ 
         printf("%6d    %f\n",n,duration);
-        if(n==100) step = 100; //nÀÌ 100ÀÌ µÈ ½ÃÁ¡ºÎÅÍ 100¾¿ ´õÇÔ
+        if(n==100) step = 100; //nì´ 100ì´ ëœ ì‹œì ë¶€í„° 100ì”© ë”í•¨
     }
 }
 
-void sort(int list[], int n){ //Á¤·Ä ÇÔ¼ö ÄÚµå
+void sort(int list[], int n){ //ì •ë ¬ í•¨ìˆ˜ ì½”ë“œ
     int i,j,min,temp;
     for(i=0; i<n-1;i++){
         min = i;

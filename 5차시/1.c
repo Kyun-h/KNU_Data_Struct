@@ -1,4 +1,4 @@
-//2024004060 È²»ó±Õ
+//2024004060 í™©ìƒê· 
 #include <stdio.h>
 #include <stdlib.h>
 int MAX_ROWS;
@@ -10,7 +10,7 @@ typedef struct {
     int value;
 } terms;
 
-void fastTranspose(terms *a, terms *b); //matrix º¯°æ ÇÔ¼ö
+void fastTranspose(terms *a, terms *b); //matrix ë³€ê²½ í•¨ìˆ˜
 
 int main(void){
     FILE *f;
@@ -22,7 +22,7 @@ int main(void){
     fscanf(f,"%d",&MAX_ROWS);
     fscanf(f,"%d",&MAX_COLS);
     
-    int MAX_TERMS = MAX_COLS * MAX_ROWS; //¹è¿­ ÃÖ´ë Å©±â 
+    int MAX_TERMS = MAX_COLS * MAX_ROWS; //ë°°ì—´ ìµœëŒ€ í¬ê¸° 
 
     terms *a, *b;
 
@@ -31,7 +31,7 @@ int main(void){
 
     int termCount = 0;
 
-    for(int v = 0; v<MAX_TERMS; v++){ //a ¹è¿­ ÃÊ±âÈ­ 
+    for(int v = 0; v<MAX_TERMS; v++){ //a ë°°ì—´ ì´ˆê¸°í™” 
         a[v].value = 0;
     }
 
@@ -39,7 +39,7 @@ int main(void){
     
     for (int m = 0; m < MAX_ROWS; m++) { 
         for (int n = 0; n < MAX_COLS; n++) {
-            fscanf(f, "%d", &value); //ÆÄÀÏÀÇ ³»¿ëÀ» ¹Ş¾Æ¼­ 1ÀÌ¸é ³Ö±â 
+            fscanf(f, "%d", &value); //íŒŒì¼ì˜ ë‚´ìš©ì„ ë°›ì•„ì„œ 1ì´ë©´ ë„£ê¸° 
             if(value==1){
                 a[++termCount].row = m;
                 a[termCount].col = n;
@@ -53,7 +53,7 @@ int main(void){
 
     int k=0;
     termCount = 1;
-    printf("\t[Before Transpose]\n"); //Trans ÀÌÀü Ãâ·Â 
+    printf("\t[Before Transpose]\n"); //Trans ì´ì „ ì¶œë ¥ 
     printf("\tROW\tCOL\tVAL\n");
     
     for (int i = 0; i <= a[0].value; i++) {
@@ -67,13 +67,13 @@ int main(void){
         for (int j = 0; j < MAX_COLS; j++) {
             int found = 0;
             for (int k = 1; k <= a[0].value; k++) {
-                if (a[k].row == i && a[k].col == j) { //ÇÏ³ª¾¿ °Ë»çÇØ¼­ ÇØ´çÇÏ´Â row col¿¡ a°¡ Á¸ÀçÇÑ´Ù¸é * Ãâ·Â 
+                if (a[k].row == i && a[k].col == j) { //í•˜ë‚˜ì”© ê²€ì‚¬í•´ì„œ í•´ë‹¹í•˜ëŠ” row colì— aê°€ ì¡´ì¬í•œë‹¤ë©´ * ì¶œë ¥ 
                     printf("*");
                     found = 1;
                     break;
                 }
             }
-            if (!found) { //ÇØ´çÇÏ´Â a ¹è¿­ÀÌ ¾øÀ¸¸é °ø¹é Ãâ·Â 
+            if (!found) { //í•´ë‹¹í•˜ëŠ” a ë°°ì—´ì´ ì—†ìœ¼ë©´ ê³µë°± ì¶œë ¥ 
                 printf(" ");
             }
         }
@@ -82,11 +82,11 @@ int main(void){
 
     puts("");
 
-    fastTranspose(a,b); //bÀÇ row¿¡ aÀÇ col , col¿¡ aÀÇ row ³Ö¾î¼­ row ±â¹İ Á¤·Ä 
+    fastTranspose(a,b); //bì˜ rowì— aì˜ col , colì— aì˜ row ë„£ì–´ì„œ row ê¸°ë°˜ ì •ë ¬ 
     
     termCount=0;
     
-    printf("\t[After Transpose]\n"); //º¯È¯ ÈÄ b Ãâ·Â 
+    printf("\t[After Transpose]\n"); //ë³€í™˜ í›„ b ì¶œë ¥ 
     printf("\tROW\tCOL\tVAL\n");
     for (int i = 0; i <= b[0].value; i++) {
         printf("\t%d\t%d\t%d\n", b[i].row, b[i].col, b[i].value);
@@ -95,7 +95,7 @@ int main(void){
     puts("");
 
     termCount = 0;
-    for (int i = 0; i < b[0].row; i++) { //a¿Í µ¿ÀÏÇÑ ¸ÅÄ¿´ÏÁò 
+    for (int i = 0; i < b[0].row; i++) { //aì™€ ë™ì¼í•œ ë§¤ì»¤ë‹ˆì¦˜ 
         for (int j = 0; j < b[0].col; j++) {
             int found = 0;
             for (int k = 1; k <= b[0].value; k++) {
@@ -111,7 +111,7 @@ int main(void){
         }
         puts("");
     }
-    free(a); //ÇÒ´ç ÇØÁ¦ 
+    free(a); //í• ë‹¹ í•´ì œ 
     free(b);
     fclose(f);
     return 0;
@@ -129,17 +129,17 @@ void fastTranspose(terms* a, terms* b){
 
     if(numTerms > 0){
         for (i=0; i<numCols; i++){
-            rowTerms[i] = 0; //ÃÊ±âÈ­ 
+            rowTerms[i] = 0; //ì´ˆê¸°í™” 
         }
         for(i=1; i<= numTerms; i++){
             rowTerms[a[i].col]++; 
         }
-        startingPos[0] = 1; //½ÃÀÛÁöÁ¡ ¼³Á¤ 
+        startingPos[0] = 1; //ì‹œì‘ì§€ì  ì„¤ì • 
         
         for(i=1; i <numCols; i++){
             startingPos[i] = startingPos[i-1] + rowTerms[i-1];
         }
-        for(i=1; i<=numTerms; i++){ //a ¹è¿­¿¡ ´ëÇÑ Á¤º¸ b¿¡ ÀúÀå 
+        for(i=1; i<=numTerms; i++){ //a ë°°ì—´ì— ëŒ€í•œ ì •ë³´ bì— ì €ì¥ 
             j = startingPos[a[i].col]++;
             b[j].row = a[i].col; 
             b[j].col = a[i].row;

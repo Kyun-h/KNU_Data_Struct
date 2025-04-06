@@ -1,9 +1,9 @@
-//2024004060 È²»ó±Õ
+//2024004060 í™©ìƒê· 
 
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct polynomial{ //±¸Á¶Ã¼ POLY ¼±¾ğ 
+typedef struct polynomial{ //êµ¬ì¡°ì²´ POLY ì„ ì–¸ 
     int coef, expon;
 }POLY;
 
@@ -12,16 +12,16 @@ int size_b=1;
 int avail=0;
 int cnt=0;
 
-void padd(int startA, int finishA, int startB, int finishB, int *startD, int *finishD, POLY *terms); //A(x)¿¡¼­ B(x) »©´Â ÇÔ¼ö 
-void attach(float coefficient, int exponent,POLY *terms); //terms ºó°ø°£¿¡ coef¿Í expon ºÙÀÌ´Â ÇÔ¼ö
-int COMPARE(int, int); //°è¼ö ºñ±³ÇØ¼­ ÁÂÇ×ÀÌ Å©¸é 1 , °°À¸¸é 0, ¿ìÇ×ÀÌ Å©¸é -1 return ÇÏ´Â ÇÔ¼ö
+void padd(int startA, int finishA, int startB, int finishB, int *startD, int *finishD, POLY *terms); //A(x)ì—ì„œ B(x) ë¹¼ëŠ” í•¨ìˆ˜ 
+void attach(float coefficient, int exponent,POLY *terms); //terms ë¹ˆê³µê°„ì— coefì™€ expon ë¶™ì´ëŠ” í•¨ìˆ˜
+int COMPARE(int, int); //ê³„ìˆ˜ ë¹„êµí•´ì„œ ì¢Œí•­ì´ í¬ë©´ 1 , ê°™ìœ¼ë©´ 0, ìš°í•­ì´ í¬ë©´ -1 return í•˜ëŠ” í•¨ìˆ˜
 
 int main(void){
     POLY *terms;
     int size_c = 100;
 
-    FILE *f; //in1.txt ÆÄÀÏ ÀÔ·Â 
-    FILE *fp; //in2.txt ÆÄÀÏ ÀÔ·Â 
+    FILE *f; //in1.txt íŒŒì¼ ì…ë ¥ 
+    FILE *fp; //in2.txt íŒŒì¼ ì…ë ¥ 
     if((f=fopen("in1.txt","r"))==NULL){
         printf("CANNOT OPEN THE FILE.");
         exit(EXIT_FAILURE);
@@ -32,11 +32,11 @@ int main(void){
         exit(EXIT_FAILURE);
     }
 
-    //1¹øÂ° ÆÄÀÏ ÀÔÃâ·Â
+    //1ë²ˆì§¸ íŒŒì¼ ì…ì¶œë ¥
     fscanf(f,"%d",&size_a); 
-    terms = (POLY*)malloc((size_a)*sizeof(POLY)); //terms¿¡ °ø°£ ÇÒ´ç 
+    terms = (POLY*)malloc((size_a)*sizeof(POLY)); //termsì— ê³µê°„ í• ë‹¹ 
     
-    for(int i=0; i<size_a; i++){ //A(x) ÇÔ¼ö ¹Ş±â 
+    for(int i=0; i<size_a; i++){ //A(x) í•¨ìˆ˜ ë°›ê¸° 
         fscanf(f,"%d",&terms[i].coef);
         fscanf(f,"%d",&terms[i].expon);
     }
@@ -44,43 +44,43 @@ int main(void){
     fscanf(f,"%d",&size_b);
     terms = (POLY*)realloc(terms,(size_a*2+size_b*2)*sizeof(POLY)); //size realloc 
 
-    for(int i = size_a; i<size_a + size_b; i++){ //B(x) ÇÔ¼ö ¹Ş±â 
+    for(int i = size_a; i<size_a + size_b; i++){ //B(x) í•¨ìˆ˜ ë°›ê¸° 
         fscanf(f,"%d",&terms[i].coef);
         fscanf(f,"%d",&terms[i].expon);
     }
 
     int sa = 0, fa = size_a-1, sb=size_a , fb = size_a+size_b-1, sd, fd;
-    avail = size_a + size_b; //terms ¾È¿¡ ºó°ø°£ 
+    avail = size_a + size_b; //terms ì•ˆì— ë¹ˆê³µê°„ 
     padd(sa,fa,sb,fb,&sd,&fd,terms);
     
-    printf("in1.txt Ãâ·Â°á°ú : \n");
+    printf("in1.txt ì¶œë ¥ê²°ê³¼ : \n");
     printf("%d ", cnt);
-    for(int i=sd; i<=fd; i++){ //in1.txt¿¡¼­ C(x) Ãâ·Â 
+    for(int i=sd; i<=fd; i++){ //in1.txtì—ì„œ C(x) ì¶œë ¥ 
         printf("%d %d ",terms[i].coef,terms[i].expon);
     }
     puts("");
 
-    //2¹øÂ° ÅØ½ºÆ® ÆÄÀÏ ÀÔÃâ·Â
+    //2ë²ˆì§¸ í…ìŠ¤íŠ¸ íŒŒì¼ ì…ì¶œë ¥
     cnt = 0;
     fscanf(fp,"%d", &size_a);
-    for(int i=0; i<size_a; i++){ //in2.txt¿¡¼­ A(x) ¹Ş±â 
+    for(int i=0; i<size_a; i++){ //in2.txtì—ì„œ A(x) ë°›ê¸° 
         fscanf(fp,"%d",&terms[i].coef);
         fscanf(fp,"%d",&terms[i].expon);
     }
     fscanf(fp,"%d",&size_b);
-    terms = (POLY*)realloc(terms,(size_a*2+size_b*2)*sizeof(POLY)); //°ø°£ ÀçÇÒ´ç 
+    terms = (POLY*)realloc(terms,(size_a*2+size_b*2)*sizeof(POLY)); //ê³µê°„ ì¬í• ë‹¹ 
 
-    for(int i = size_a; i<size_a + size_b; i++){ //in2.txt¿¡¼­ B(x) ¹Ş±â 
+    for(int i = size_a; i<size_a + size_b; i++){ //in2.txtì—ì„œ B(x) ë°›ê¸° 
         fscanf(fp,"%d",&terms[i].coef);
         fscanf(fp,"%d",&terms[i].expon);
     }
     sa = 0, fa = size_a-1, sb=size_a , fb = size_a+size_b-1, sd, fd;
-    avail = size_a + size_b; //terms¿¡ ºó°ø°£ 
+    avail = size_a + size_b; //termsì— ë¹ˆê³µê°„ 
     padd(sa,fa,sb,fb,&sd,&fd,terms);
     
-    printf("in2.txt Ãâ·Â°á°ú : \n");
+    printf("in2.txt ì¶œë ¥ê²°ê³¼ : \n");
     printf("%d ", cnt);
-    for(int i=sd; i<=fd; i++){ //in2.txt¿¡¼­ C(x) Ãâ·Â 
+    for(int i=sd; i<=fd; i++){ //in2.txtì—ì„œ C(x) ì¶œë ¥ 
         printf("%d %d ",terms[i].coef,terms[i].expon);
     }
 
@@ -90,17 +90,17 @@ int main(void){
     return 0;
 }
 
-//A(x)¿¡¼­ B(x) »©´Â ÇÔ¼ö -> Â÷¼ö ºñ±³ case·Î ³ª´® 
+//A(x)ì—ì„œ B(x) ë¹¼ëŠ” í•¨ìˆ˜ -> ì°¨ìˆ˜ ë¹„êµ caseë¡œ ë‚˜ëˆ” 
 void padd(int startA, int finishA, int startB, int finishB, int *startD, int *finishD, POLY *terms){
     int coefficient;
-    *startD= avail; //ºó°ø°£À» D·Î ÇÒ´ç 
+    *startD= avail; //ë¹ˆê³µê°„ì„ Dë¡œ í• ë‹¹ 
     while (startA<= finishA&& startB<= finishB){
         switch(COMPARE(terms[startA].expon, terms[startB].expon)){
-            case -1: //B Â÷¼ö°¡ Å©¸é 
+            case -1: //B ì°¨ìˆ˜ê°€ í¬ë©´ 
                 attach(-terms[startB].coef, terms[startB].expon,terms); 
                 startB++;
                 break;
-            case 0: //Â÷¼ö°¡ °°À¸¸é 
+            case 0: //ì°¨ìˆ˜ê°€ ê°™ìœ¼ë©´ 
                 coefficient = terms[startA].coef - terms[startB].coef;
                 if(coefficient!=0){
                     attach(coefficient, terms[startA].expon,terms);
@@ -108,7 +108,7 @@ void padd(int startA, int finishA, int startB, int finishB, int *startD, int *fi
                 startA++;
                 startB++;
                 break;
-            case 1:  //A Â÷¼ö°¡ Å©¸é 
+            case 1:  //A ì°¨ìˆ˜ê°€ í¬ë©´ 
                 attach(terms[startA].coef,terms[startA].expon,terms);
                 startA++;
         }
@@ -122,7 +122,7 @@ void padd(int startA, int finishA, int startB, int finishB, int *startD, int *fi
     *finishD = avail -1; 
 }
 
-//termsÀÇ D°ø°£ (avail)¿¡ coef¶û expon ÀúÀå 
+//termsì˜ Dê³µê°„ (avail)ì— coefë‘ expon ì €ì¥ 
 void attach(float coefficient, int exponent,POLY *terms){ 
     if (avail >=2*size_a+2*size_b) {
         printf("ERROR\n");
@@ -133,7 +133,7 @@ void attach(float coefficient, int exponent,POLY *terms){
     cnt++;
 }
 
-//µÎ °è¼ö ºñ±³ 
+//ë‘ ê³„ìˆ˜ ë¹„êµ 
 int COMPARE(int a, int b){ 
     if(a<b) return  -1;
     else if(a==b) return 0;

@@ -1,11 +1,11 @@
-//2024004060 È²»ó±Õ 
+//2024004060 í™©ìƒê·  
 #include <stdio.h>
 #include <ctype.h>
 #pragma warning (disable:4996)
 #define Max_size 20
 
-void hol_prt(char [],int size , int i); //È¦¼ö¹øÂ° ¹®ÀÚ Ãâ·ÂÇÏ´Â ÇÔ¼ö 
-void reverse(char[], int); //¹®ÀÚ¿­ °Å²Ù·Î Ãâ·ÂÇÏ´Â ÇÔ¼ö 
+void hol_prt(char [],int size , int i); //í™€ìˆ˜ë²ˆì§¸ ë¬¸ì ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ 
+void reverse(char[], int); //ë¬¸ìì—´ ê±°ê¾¸ë¡œ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ 
 
 int main(void){
     char in_str[Max_size];
@@ -17,15 +17,15 @@ int main(void){
     int size = sizeof(in_str)/sizeof(in_str[0]);
     for(int j=0; j<size; j++){
         if(isalpha(in_str[j])!= 0)
-            cnt++; //¹®ÀÚ¿­ ¾È¿¡¼­ ¿µ¾î·Î ÀÔ·ÂµÈ °ª¸¸ È®ÀÎÇÏ¿© cnt¿¡ ³Ö¾î¼­ ¹®ÀÚ¿­ÀÇ ½ÇÁúÀûÀÎ size¸¦ ±¸ÇÏ±â À§ÇÑ cnt    
+            cnt++; //ë¬¸ìì—´ ì•ˆì—ì„œ ì˜ì–´ë¡œ ì…ë ¥ëœ ê°’ë§Œ í™•ì¸í•˜ì—¬ cntì— ë„£ì–´ì„œ ë¬¸ìì—´ì˜ ì‹¤ì§ˆì ì¸ sizeë¥¼ êµ¬í•˜ê¸° ìœ„í•œ cnt    
     }
 
-    printf("È¦¼ö¹øÂ° ¹®ÀÚ Ãâ·Â: ");
+    printf("í™€ìˆ˜ë²ˆì§¸ ë¬¸ì ì¶œë ¥: ");
     hol_prt(in_str,cnt, i);
     
     puts("");
 
-    printf("¹®ÀÚ¿­ °Å²Ù·Î Ãâ·Â: ");
+    printf("ë¬¸ìì—´ ê±°ê¾¸ë¡œ ì¶œë ¥: ");
     reverse(in_str,cnt);
 
     return 0;
@@ -34,13 +34,13 @@ int main(void){
 void hol_prt(char str[],int size,int i){
     if(i<size){
         printf("%c", str[i]);
-        hol_prt(str,size,i+=2); //Àç±ÍÇÏ´Â ÆÄÆ® 
+        hol_prt(str,size,i+=2); //ì¬ê·€í•˜ëŠ” íŒŒíŠ¸ 
     }
 }
 
 void reverse(char str[], int size){
     if(size>0){
         printf("%c", str[size-1]);
-        reverse(str, size-1); //Àç±ÍÇÏ´Â ÆÄÆ® 
+        reverse(str, size-1); //ì¬ê·€í•˜ëŠ” íŒŒíŠ¸ 
     }
 }

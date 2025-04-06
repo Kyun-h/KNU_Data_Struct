@@ -1,12 +1,12 @@
-//2024004060 È²»ó±Õ
+//2024004060 í™©ìƒê· 
 /*
-½Ç¼öÇÑ Á¡ : 3Â÷¿ø ÇÒ´çÇÏ´Â °úÁ¤¿¡¼­ index Àß¸ø ¼³Á¤ & free °úÁ¤¿¡¼­ ¶ÇÇÑ index ½Ç¼ö -> °³³ä ¶È¹Ù·Î Â¤°í ³Ñ¾î°¡±â
+ì‹¤ìˆ˜í•œ ì  : 3ì°¨ì› í• ë‹¹í•˜ëŠ” ê³¼ì •ì—ì„œ index ì˜ëª» ì„¤ì • & free ê³¼ì •ì—ì„œ ë˜í•œ index ì‹¤ìˆ˜ -> ê°œë… ë˜‘ë°”ë¡œ ì§šê³  ë„˜ì–´ê°€ê¸°
 */
 #include <stdio.h>
 #include <stdlib.h>
 
-void free3DArray(int***, int, int, int); //µ¿ÀûÇÒ´çÇØÁ¦ ÇÔ¼ö
-void print3DArray(int***, int, int, int); //3Â÷¿ø ¹è¿­ Ãâ·Â ÇÔ¼ö
+void free3DArray(int***, int, int, int); //ë™ì í• ë‹¹í•´ì œ í•¨ìˆ˜
+void print3DArray(int***, int, int, int); //3ì°¨ì› ë°°ì—´ ì¶œë ¥ í•¨ìˆ˜
 
 int main(void) {
     int ***arr;
@@ -22,7 +22,7 @@ int main(void) {
 
     puts("");
     
-    arr = (int***)malloc(i * sizeof(int**)); //µ¿ÀûÇÒ´ç
+    arr = (int***)malloc(i * sizeof(int**)); //ë™ì í• ë‹¹
     if (arr == NULL) {
         printf("Memory Allocation failed.");
         exit(EXIT_FAILURE);
@@ -31,7 +31,7 @@ int main(void) {
     for (int m = 0; m < i; m++) {
         arr[m] = (int**)malloc(j * sizeof(int*));
         for (int n = 0; n < j; n++) {
-            arr[m][n] = (int*)malloc(k * sizeof(int)); //3Â÷¿ø ¸ğµÎ ÇÒ´ç ¿Ï·á
+            arr[m][n] = (int*)malloc(k * sizeof(int)); //3ì°¨ì› ëª¨ë‘ í• ë‹¹ ì™„ë£Œ
         }
     }
 
@@ -49,7 +49,7 @@ int main(void) {
     return 0;
 }
 
-void free3DArray(int*** ary, int i, int j, int k) { //µ¿ÀûÇÒ´çÇØÁ¦ ÇÔ¼ö
+void free3DArray(int*** ary, int i, int j, int k) { //ë™ì í• ë‹¹í•´ì œ í•¨ìˆ˜
     for (int m = 0; m < i; m++) {
         for (int n = 0; n < j; n++) {
             free(ary[m][n]);
@@ -59,7 +59,7 @@ void free3DArray(int*** ary, int i, int j, int k) { //µ¿ÀûÇÒ´çÇØÁ¦ ÇÔ¼ö
     free(ary);
 }
 
-void print3DArray(int*** ary, int i, int j, int k) { //3Â÷¿ø ¹è¿­ Ãâ·ÂÇÔ¼ö
+void print3DArray(int*** ary, int i, int j, int k) { //3ì°¨ì› ë°°ì—´ ì¶œë ¥í•¨ìˆ˜
     for (int m = 0; m < i; m++) {
         for (int n = 0; n < j; n++) {
             for (int v = 0; v < k; v++) {

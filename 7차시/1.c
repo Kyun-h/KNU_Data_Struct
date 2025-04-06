@@ -1,4 +1,4 @@
-//2024004060 È²»ó±Õ
+//2024004060 í™©ìƒê· 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,13 +17,13 @@ precedence get_token(char* symbol, int* n);
 
 int eval(void);
 void postfix(void); 
-void push(int item); //stack push ÇÔ¼ö 
-char pop(); //stack pop ÇÔ¼ö 
-void stackFull(); //stackÀÌ FullÇÑ »óÅÂÀÏ ¶§ »ç¿ë
+void push(int item); //stack push í•¨ìˆ˜ 
+char pop(); //stack pop í•¨ìˆ˜ 
+void stackFull(); //stackì´ Fullí•œ ìƒíƒœì¼ ë•Œ ì‚¬ìš©
 void print_token(int pop);
 char expr[MAX_EXPR_SIZE];
 
-int valid_exp(const char* expr) { //°ıÈ£ ¼ö ¸Â´Â Áö È®ÀÎÇÏ´Â ÇÔ¼ö 
+int valid_exp(const char* expr) { //ê´„í˜¸ ìˆ˜ ë§ëŠ” ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜ 
     int balance = 0;
     for (int i = 0; expr[i] != '\0'; i++) {
         if (expr[i] == '(') {
@@ -32,11 +32,11 @@ int valid_exp(const char* expr) { //°ıÈ£ ¼ö ¸Â´Â Áö È®ÀÎÇÏ´Â ÇÔ¼ö
         else if (expr[i] == ')') {
             balance--;
             if (balance < 0) {
-                return 0; // ´İ´Â °ıÈ£°¡ ¸¹À½
+                return 0; // ë‹«ëŠ” ê´„í˜¸ê°€ ë§ìŒ
             }
         }
     }
-    return balance == 0; // °ıÈ£ ¼ö È®ÀÎ 
+    return balance == 0; // ê´„í˜¸ ìˆ˜ í™•ì¸ 
 }
 
 int main(void) {
@@ -48,31 +48,31 @@ int main(void) {
         exit(EXIT_FAILURE);
     }
 
-    fscanf(f, "%d", &n); // ¼ö½ÄÀÇ °³¼ö ÀĞ±â
-    fgetc(f); // °³Çà¹®ÀÚ Á¦°Å
+    fscanf(f, "%d", &n); // ìˆ˜ì‹ì˜ ê°œìˆ˜ ì½ê¸°
+    fgetc(f); // ê°œí–‰ë¬¸ì ì œê±°
 
     for (int i = 0; i < n; i++) {
-        memset(expr, 0, sizeof(expr)); // expr ¹è¿­ ÃÊ±âÈ­
+        memset(expr, 0, sizeof(expr)); // expr ë°°ì—´ ì´ˆê¸°í™”
 
         if (fgets(expr, sizeof(expr), f) == NULL) {
             printf("Error reading expression.\n");
             break;
         }
 
-        expr[strcspn(expr, "\n")] = '\0'; // °³Çà¹®ÀÚ Á¦°Å  
+        expr[strcspn(expr, "\n")] = '\0'; // ê°œí–‰ë¬¸ì ì œê±°  
 
 
-        printf("Infix: %s\n", expr); //Infix Ãâ·Â 
+        printf("Infix: %s\n", expr); //Infix ì¶œë ¥ 
 
-        // °ıÈ£ ¿À·ù °Ë»ç 
+        // ê´„í˜¸ ì˜¤ë¥˜ ê²€ì‚¬ 
         if (!valid_exp(expr)) {
-            printf("°ıÈ£ ¿À·ù\n");
+            printf("ê´„í˜¸ ì˜¤ë¥˜\n");
             puts("");
             continue;
         }
 
         printf("Postfix: ");
-        postfix(); // ÈÄÀ§ Ç¥±â¹ı º¯È¯
+        postfix(); // í›„ìœ„ í‘œê¸°ë²• ë³€í™˜
         puts("");
     }
 
@@ -81,7 +81,7 @@ int main(void) {
 }
 
 
-void postfix(void) { //ÈÄÀ§ Ç¥±â¹ıÀ¸·Î º¯È¯ÇØÁÖ´Â ÇÔ¼ö 
+void postfix(void) { //í›„ìœ„ í‘œê¸°ë²•ìœ¼ë¡œ ë³€í™˜í•´ì£¼ëŠ” í•¨ìˆ˜ 
     char symbol;
     precedence token;
     int n = 0;
@@ -107,12 +107,12 @@ void postfix(void) { //ÈÄÀ§ Ç¥±â¹ıÀ¸·Î º¯È¯ÇØÁÖ´Â ÇÔ¼ö
         }
     }
     while (((token = pop())) != eos) {
-        print_token(token); //tokenÀ» Ãâ·ÂÇØÁÖ´Â ÇÔ¼ö 
+        print_token(token); //tokenì„ ì¶œë ¥í•´ì£¼ëŠ” í•¨ìˆ˜ 
     }
     printf("\n");
 }
 
-precedence get_token(char* symbol, int* n) { //tokenÀ» enum¿¡ ¹Ì¸® Á¤ÇØ³õÀº Á¤¼ö·Î º¯È¯ 
+precedence get_token(char* symbol, int* n) { //tokenì„ enumì— ë¯¸ë¦¬ ì •í•´ë†“ì€ ì •ìˆ˜ë¡œ ë³€í™˜ 
     *symbol = expr[(*n)++];
     switch (*symbol) {
     case '(': return lparen;
@@ -129,13 +129,13 @@ precedence get_token(char* symbol, int* n) { //tokenÀ» enum¿¡ ¹Ì¸® Á¤ÇØ³õÀº Á¤¼ö
     }
 }
 
-void push(int item) { //stack¿¡ push ÇÔ¼ö 
+void push(int item) { //stackì— push í•¨ìˆ˜ 
     if (top >= MAX_STACK_SIZE - 1)
         stackFull();
     stack[++top] = item;
 }
 
-char pop() { //stack¿¡¼­ popÇÏ´Â ÇÔ¼ö 
+char pop() { //stackì—ì„œ popí•˜ëŠ” í•¨ìˆ˜ 
     if (top == -1) {
         fprintf(stderr, "Stack is Empty");
         exit(EXIT_FAILURE);
@@ -143,12 +143,12 @@ char pop() { //stack¿¡¼­ popÇÏ´Â ÇÔ¼ö
     return stack[top--];
 }
 
-void stackFull() { //stackÀÌ FullÇÑ »óÅÂÀÏ ¶§ ¿À·ù Ãâ·Â 
+void stackFull() { //stackì´ Fullí•œ ìƒíƒœì¼ ë•Œ ì˜¤ë¥˜ ì¶œë ¥ 
     fprintf(stderr, "Stack is Full.");
     exit(EXIT_FAILURE);
 }
 
-void print_token(int token) { //tokenÀ» enum¿¡ »çÀü¿¡ Á¤ÇØ³õÀº ±ÔÄ¢¿¡ µû¶ó Ãâ·Â 
+void print_token(int token) { //tokenì„ enumì— ì‚¬ì „ì— ì •í•´ë†“ì€ ê·œì¹™ì— ë”°ë¼ ì¶œë ¥ 
     switch (token) {
     case plus: printf("+"); break;
     case minus: printf("-"); break;
