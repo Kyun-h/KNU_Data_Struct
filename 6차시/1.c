@@ -1,5 +1,6 @@
 //2024004060 황상균
 //maze - DataStruct 
+//stack DS 
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_STACK_SIZE 100

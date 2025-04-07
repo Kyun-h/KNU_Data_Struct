@@ -1,4 +1,5 @@
 //2024004060 황상균
+//stack - infix , postfix DataStruct 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
