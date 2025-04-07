@@ -1,4 +1,5 @@
 //2024004060 황상균
+//fastTranspose DataStruct 
 #include <stdio.h>
 #include <stdlib.h>
 int MAX_ROWS;
