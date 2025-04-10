@@ -1,4 +1,4 @@
-//2024004060 È²»ó±Õ 
+//2024004060 í™©ìƒê·  
 //linked list - insert & delete 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,15 +9,15 @@ typedef struct node{
     Link next;
 } Node;
 
-void printList(Link); //list Ãâ·Â ÇÔ¼ö 
-Link appendNode(Link,Link); //list ¸¶Áö¸·¿¡ node Ãß°¡ÇÏ´Â ÇÔ¼ö 
-Link createNode(int); //node »ı¼º ÇÔ¼ö 
-Link inf_appendNode(Link head,int item,Link); //Â¦¼öÀÏ °æ¿ì list ¾Õ¿¡ node Ãß°¡ÇÏ´Â ÇÔ¼ö 
-Link insert(Link head,int num); //list Áß°£¿¡ node Ãß°¡ÇÏ´Â ÇÔ¼ö 
-Link delete(Link head,int num); //listÀÇ num¿¡ ÇØ´çÇÏ´Â node Á¦°ÅÇÏ´Â ÇÔ¼ö 
-int DupCheck(Link head,int key); //list¿¡ node°¡ Áßº¹À¸·Î Á¸ÀçÇÏ´Â Áö Ã¼Å©ÇÏ´Â ÇÔ¼ö 
+void printList(Link); //list ì¶œë ¥ í•¨ìˆ˜ 
+Link appendNode(Link,Link); //list ë§ˆì§€ë§‰ì— node ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ 
+Link createNode(int); //node ìƒì„± í•¨ìˆ˜ 
+Link inf_appendNode(Link head,int item,Link); //ì§ìˆ˜ì¼ ê²½ìš° list ì•ì— node ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ 
+Link insert(Link head,int num); //list ì¤‘ê°„ì— node ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ 
+Link delete(Link head,int num); //listì˜ numì— í•´ë‹¹í•˜ëŠ” node ì œê±°í•˜ëŠ” í•¨ìˆ˜ 
+int DupCheck(Link head,int key); //listì— nodeê°€ ì¤‘ë³µìœ¼ë¡œ ì¡´ì¬í•˜ëŠ” ì§€ ì²´í¬í•˜ëŠ” í•¨ìˆ˜ 
 
-int flag = 0; //delete ÇÔ¼öÀÇ flag -> main¿¡¼­µµ »ç¿ëÇØ¼­ Àü¿ªÀ¸·Î ¼±¾ğ 
+int flag = 0; //delete í•¨ìˆ˜ì˜ flag -> mainì—ì„œë„ ì‚¬ìš©í•´ì„œ ì „ì—­ìœ¼ë¡œ ì„ ì–¸ 
 int main(void){
     Link head = NULL,cur;
 
@@ -37,10 +37,10 @@ int main(void){
     for(int i=0; i<size; i++){
         fscanf(f1,"%d",&num);
         cur = createNode(num);
-        if(num%2==0){ //Â¦¼öÀÇ °æ¿ì 
+        if(num%2==0){ //ì§ìˆ˜ì˜ ê²½ìš° 
             head = inf_appendNode(head,num,cur);
         }
-        else{ //È¦¼öÀÏ ¶§ 
+        else{ //í™€ìˆ˜ì¼ ë•Œ 
             head = appendNode(head,cur);
         }
     }
@@ -50,13 +50,13 @@ int main(void){
 
     char ch;
     fscanf(f2,"%d",&size);
-    fgetc(f2); //°³Çà¹®ÀÚ Á¦°Å 
+    fgetc(f2); //ê°œí–‰ë¬¸ì ì œê±° 
     for(int i=0; i<size;i++){
         flag=0;
         ch = fgetc(f2);
         if(ch=='a'){
             fscanf(f2,"%d",&num);
-            fgetc(f2); //°³Çà¹®ÀÚ »èÁ¦ 
+            fgetc(f2); //ê°œí–‰ë¬¸ì ì‚­ì œ 
 
             printf("Insert %d: ",num);
             if(DupCheck(head,num)){
@@ -70,12 +70,12 @@ int main(void){
         }
         else if(ch=='d'){
             fscanf(f2,"%d",&num);
-            fgetc(f2); //°³Çà¹®ÀÚ »èÁ¦ 
+            fgetc(f2); //ê°œí–‰ë¬¸ì ì‚­ì œ 
             head = delete(head,num);
             printf("Delete %d: ",num);
 
             if(flag){
-                printf("»èÁ¦ÇÒ ³ëµå ¾øÀ½.\n");
+                printf("ì‚­ì œí•  ë…¸ë“œ ì—†ìŒ.\n");
                 continue;
             }
             else{
@@ -90,11 +90,11 @@ int main(void){
     return 0;
 }
 
-int DupCheck(Link head,int key){ //Áßº¹ Ã¼Å© ÇÔ¼ö 
+int DupCheck(Link head,int key){ //ì¤‘ë³µ ì²´í¬ í•¨ìˆ˜ 
     Link temp = head;
     while(temp->next){
         if(temp->data == key){
-            printf("Áßº¹³ëµå.\n");
+            printf("ì¤‘ë³µë…¸ë“œ.\n");
             return 1;
         }
         temp = temp->next;
@@ -102,16 +102,16 @@ int DupCheck(Link head,int key){ //Áßº¹ Ã¼Å© ÇÔ¼ö
     return 0;
 }
 
-Link insert(Link head, int num) { //node¸¦ Áß°£¿¡ »ğÀÔÇÏ´Â ÇÔ¼ö 
+Link insert(Link head, int num) { //nodeë¥¼ ì¤‘ê°„ì— ì‚½ì…í•˜ëŠ” í•¨ìˆ˜ 
     Link temp = (Node*)malloc(sizeof(Node));
     temp->data = num;
     temp->next = NULL;
 
-    if (!head) { //head°¡ emptyÀÏ ¶§ head Ãß°¡ 
+    if (!head) { //headê°€ emptyì¼ ë•Œ head ì¶”ê°€ 
         head = temp;
     } else {
         Link nextNode = head;
-        while (((nextNode->next)->data)%2==0) { //next°¡ È¦¼ö¸é ¸ØÃã 
+        while (((nextNode->next)->data)%2==0) { //nextê°€ í™€ìˆ˜ë©´ ë©ˆì¶¤ 
             nextNode = nextNode->next;
         }
         temp->next = nextNode->next;
@@ -120,15 +120,15 @@ Link insert(Link head, int num) { //node¸¦ Áß°£¿¡ »ğÀÔÇÏ´Â ÇÔ¼ö
     return head;
 }
 
-Link delete(Link head,int key){ //key¿¡ ÇØ´çÇÏ´Â node »èÁ¦ ÇÔ¼ö 
-    Link temp = head,prev=NULL; //Ã³À½ °ªÀ» deleteÇÏ±â À§ÇØ °Ë»ç 
+Link delete(Link head,int key){ //keyì— í•´ë‹¹í•˜ëŠ” node ì‚­ì œ í•¨ìˆ˜ 
+    Link temp = head,prev=NULL; //ì²˜ìŒ ê°’ì„ deleteí•˜ê¸° ìœ„í•´ ê²€ì‚¬ 
     if(temp->data==key){
         head = temp->next;
         free(temp);
         return head;
     }
 
-    temp=head->next,prev=head; //Ã³À½ °ª(head) Á¦¿ÜÇÏ°í °Ë»ç 
+    temp=head->next,prev=head; //ì²˜ìŒ ê°’(head) ì œì™¸í•˜ê³  ê²€ì‚¬ 
     int found=0;
     while(temp){
         if(temp->data==key){
@@ -141,12 +141,12 @@ Link delete(Link head,int key){ //key¿¡ ÇØ´çÇÏ´Â node »èÁ¦ ÇÔ¼ö
         temp = temp->next;
     }
     if(!found){
-        flag++; //deleteÇÒ node°¡ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é flag ¹İÈ¯ 
+        flag++; //deleteí•  nodeê°€ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ flag ë°˜í™˜ 
     }
     return head;
 }
 
-Link inf_appendNode(Link head,int item,Link cur){ //Â¦¼öÀÏ ¶§ ¾Õ¿¡´Ù°¡ Ãß°¡ÇÏ´Â ÇÔ¼ö 
+Link inf_appendNode(Link head,int item,Link cur){ //ì§ìˆ˜ì¼ ë•Œ ì•ì—ë‹¤ê°€ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ 
     Link temp;
     temp = (Node*)malloc(sizeof(Node));
 
@@ -163,7 +163,7 @@ Link inf_appendNode(Link head,int item,Link cur){ //Â¦¼öÀÏ ¶§ ¾Õ¿¡´Ù°¡ Ãß°¡ÇÏ´Â 
     }
 }
 
-Link appendNode(Link head, Link cur){ //È¦¼ö append 
+Link appendNode(Link head, Link cur){ //í™€ìˆ˜ append 
     Link nextnode = head;
     if(!head){
         head = cur;
@@ -176,7 +176,7 @@ Link appendNode(Link head, Link cur){ //È¦¼ö append
     return head;
 }
 
-void printList(Link head){ //List Ãâ·Â 
+void printList(Link head){ //List ì¶œë ¥ 
     Link nextNode = head;
     while(nextNode){
         printf("%d ",nextNode->data);
@@ -184,7 +184,7 @@ void printList(Link head){ //List Ãâ·Â
     }
 }
 
-Link createNode(int num){ //Node »ı¼º ÇÔ¼ö 
+Link createNode(int num){ //Node ìƒì„± í•¨ìˆ˜ 
     Link cur = (Node*)malloc(sizeof(Node));
     cur->data = num;
     cur->next = NULL;

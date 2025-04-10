@@ -1,4 +1,4 @@
-//2024004060 È²»ó±Õ
+//2024004060 í™©ìƒê· 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,8 +6,8 @@
 #pragma warning (disable:4996)
 #define MAX 50
 
-int Max(int price[],int size); //ÃÖ°í °¡°İ Ã£¾ÆÁÖ´Â ÇÔ¼ö 
-int Min(int price[],int size); //ÃÖ¼Ò °¡°İ Ã£¾ÆÁÖ´Â ÇÔ¼ö 
+int Max(int price[],int size); //ìµœê³  ê°€ê²© ì°¾ì•„ì£¼ëŠ” í•¨ìˆ˜ 
+int Min(int price[],int size); //ìµœì†Œ ê°€ê²© ì°¾ì•„ì£¼ëŠ” í•¨ìˆ˜ 
 
 
 int main(){
@@ -24,7 +24,7 @@ int main(){
     fscanf(fp1,"%d",&size);
     
     int i=0;
-    while (fscanf(fp1, "%s %d %d", &name[i], &year[i], &price[i]) != EOF) { //in.txt ÆÄÀÏÀÇ ³»¿ëÀ» name , price , year ¹è¿­¿¡ ³Ö±â 
+    while (fscanf(fp1, "%s %d %d", &name[i], &year[i], &price[i]) != EOF) { //in.txt íŒŒì¼ì˜ ë‚´ìš©ì„ name , price , year ë°°ì—´ì— ë„£ê¸° 
         i++;
     }
 
@@ -33,7 +33,7 @@ int main(){
 
     printf("Max price:\n");
 
-    for(int m=0; m<size; m++){ //Max Price¿¡ ÇØ´çÇÏ´Â Ã¥ Ãâ·Â
+    for(int m=0; m<size; m++){ //Max Priceì— í•´ë‹¹í•˜ëŠ” ì±… ì¶œë ¥
         if(price[m] == Max(price, size)){
             printf("%s\n", name[m]);
         }
@@ -42,7 +42,7 @@ int main(){
     puts("");
     
     printf("Min price:\n");  
-    for(int m=0; m<size; m++){ //Min Price¿¡ ÇØ´çÇÏ´Â Ã¥ Ãâ·Â
+    for(int m=0; m<size; m++){ //Min Priceì— í•´ë‹¹í•˜ëŠ” ì±… ì¶œë ¥
         if(price[m] == Min(price, size)){
             printf("%s\n", name[m]);
         }
@@ -54,12 +54,12 @@ int main(){
             fprintf(fp2,"%s\n",name[i]);
         }
     }
-    fclose(fp1); //ÆÄÀÏ ´©¼ö ¹æÁö¸¦ À§ÇÑ ÆÄÀÏ´İ±â 
-    fclose(fp2); //ÆÄÀÏ ´©¼ö ¹æÁö¸¦ À§ÇÑ ´İ±â 
+    fclose(fp1); //íŒŒì¼ ëˆ„ìˆ˜ ë°©ì§€ë¥¼ ìœ„í•œ íŒŒì¼ë‹«ê¸° 
+    fclose(fp2); //íŒŒì¼ ëˆ„ìˆ˜ ë°©ì§€ë¥¼ ìœ„í•œ ë‹«ê¸° 
     return 0;
 }
 
-int Max(int price[], int size){ //Max Price¸¦ Ã£´Â ÇÔ¼ö 
+int Max(int price[], int size){ //Max Priceë¥¼ ì°¾ëŠ” í•¨ìˆ˜ 
     int max=price[0];
     for(int i=0; i<size; i++){
         if (price[i] > max) { 
@@ -69,7 +69,7 @@ int Max(int price[], int size){ //Max Price¸¦ Ã£´Â ÇÔ¼ö
     return max;
 }
 
-int Min(int price[], int size){ //Min Price¸¦ Ã£´Â ÇÔ¼ö
+int Min(int price[], int size){ //Min Priceë¥¼ ì°¾ëŠ” í•¨ìˆ˜
     int min=price[0];
     for(int i=0; i<size; i++){
         if (price[i] < min) {
