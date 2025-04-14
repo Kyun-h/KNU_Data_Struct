@@ -139,7 +139,7 @@ LINK delete(LINK head){ //첫항 삭제
         free(head);
         return NULL;
     }
-
+    prev = head;
     head = head->next;
 
     free(prev);
@@ -150,7 +150,7 @@ LINK appendNode(LINK head, LINK cur){
     LINK temp;
     temp = (Node*)malloc(sizeof(Node));
     
-    if(!(head)){
+    if(!head){
         cur->next = NULL;
         head = cur;
         return head;
