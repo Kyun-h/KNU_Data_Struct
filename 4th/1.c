@@ -136,7 +136,7 @@ void attach(float coefficient, int exponent,POLY *terms){
 
 //두 계수 비교 
 int COMPARE(int a, int b){ 
-    if(a<b) return  -1;
+    if(a<b) return -1;
     else if(a==b) return 0;
     else if(a>b) return 1;
 }
