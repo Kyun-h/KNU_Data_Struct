@@ -1,0 +1,13 @@
+12
+Kim 65
+Lee 75
+Park 55
+Choi 90
+Song 50
+Ryu 100
+Min 40
+Koh 80
+Na 50
+Ki 90
+Kang 75
+Mo 90

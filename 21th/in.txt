@@ -1,0 +1,15 @@
+14
+Cha 50
+Kang 25
+Lim 30
+Jung 85
+Kim 50
+Lee 70
+Song 60
+Ryu 90
+Han 70
+Choi 90
+Park 50
+Nam 10
+Min 20
+Shin 25
